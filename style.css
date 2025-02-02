@@ -1,0 +1,31 @@
+body {
+    background-color: #f8f9fa;
+}
+
+h1 {
+    color: #444d57;
+}
+
+.table {
+    background-color: #ffffff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.box1 h2{ 
+    float: left;
+}
+
+.box1 button {
+    float: right;
+}
+
+.container{
+    margin-top: 50px;
+}
+h6{
+    text-align: center;
+    color: red;
+}
