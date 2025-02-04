@@ -8,5 +8,4 @@
 
 <header class="bg-dark text-white text-center py-3">
         <h2>Students List</h2>a
-        <h2>Students List</h2>a
     </header>
