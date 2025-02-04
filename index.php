@@ -1,18 +1,9 @@
 <?php include('dbcon.php'); ?>
+<?php include('header.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css"> <!-- Custom CSS file -->
-</head>
 <body>
-    <header class="bg-dark text-white text-center py-3">
-        <h2>Students List</h2>
-    </header>
     <div class="container mt-5">
         <h2>BSCS 3-A</h2>
         <div class="d-flex justify-content-end mb-3">
@@ -26,6 +17,8 @@
                     <th>Last Name</th>
                     <th>Address</th>
                     <th>ID Number</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,17 +26,20 @@
                     $query = "SELECT * FROM `students`";
                     $result = mysqli_query($connection, $query);
                     if(!$result){
-                        die("Query Failed".mysqli_error());
+                        die("Query Failed".mysqli_error($connection));
                     }
                     else{
                         while($row= mysqli_fetch_assoc($result)){
-                            ?>
+                ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['firstNmae']; ?></td>
                     <td><?php echo $row['lastName']; ?></td>
                     <td><?php echo $row['address']; ?></td>
                     <td><?php echo $row['idNumber']; ?></td>
+                    <td><a href="update_page.php?id=<?php echo $row['id']; ?>" class="btn btn-success">Update</a></td>
+                    <td><a href="delete_page.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Delete</a></td>
+
                 </tr>
                             <?php
                         }
@@ -54,6 +50,18 @@
 
     <?php if(isset($_GET['message'])) { ?>
             <h6><?php echo $_GET['message']; ?></h6>
+     <?php } ?>
+
+     <?php if(isset($_GET['insert_msg'])) { ?>
+            <h6><?php echo $_GET['insert_msg']; ?></h6>
+     <?php } ?>
+
+     <?php if(isset($_GET['update_msg'])) { ?>
+            <h6><?php echo $_GET['update_msg']; ?></h6>
+     <?php } ?>
+
+     <?php if(isset($_GET['delete_msg'])) { ?>
+            <h6><?php echo $_GET['delete_msg']; ?></h6>
      <?php } ?>
 
         </div>
@@ -92,11 +100,8 @@
     </div>
   </div>
 </div>
-
-    <footer class="bg-white text-dark text-center py-3 mt-5">
-        <p>&copy; 2025 CRUD APP. All Rights Reserved.</p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<?php include('footer.php'); ?>
+        
     </form>
 </body>
 </html>
